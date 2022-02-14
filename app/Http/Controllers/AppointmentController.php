@@ -36,6 +36,10 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        $date=$request->input('date');
+        $count=Appointment::where('date', $date)->get();
+        $a=sizeof($count);
+        if($a<2){
         $data= new Appointment;
         $department=$request->input('departement');
         $doctor_id=Doctor::where('specialisation', $department)->first()->id;
@@ -49,6 +53,14 @@ class AppointmentController extends Controller
     'status'=>200,
     'message'=>'Appoinment Added Successfully',
 ]);
+        }
+        else{
+            
+        }
+        return response()->json([
+                'status'=>204,
+                'message'=>'Appoinment Not Taken Today!!',
+            ]); 
     }
 
     /**

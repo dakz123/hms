@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
+use App\Models\Doctor;
+use App\Http\Models\User;
 use Illuminate\Http\Request;
 
-use App\Http\Models\User;
-use Auth;
 class HomesController extends Controller
 {
     public function redirect()
@@ -25,6 +27,9 @@ else{
         }
     }
     public function index(){
-        return view('user.home');
+        $speclisations=Doctor::all();
+       
+        return view('user.home',compact('speclisations'));
+        
     }
 }

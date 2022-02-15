@@ -28,6 +28,7 @@ use App\Http\Controllers\AppointmentController;
 //Route::get('/posts', [PostsController::class, 'index']);
 Route::get('/add_doctor_view', [AdminController::class, 'addView']);
 Route::get('/calender', [AdminController::class, 'calenderView']);
+Route::post('/calendar_view', [AdminController::class, 'show']);
 Route::get('/', [HomesController::class, 'index']);
 Route::get('/home', [HomesController::class, 'redirect']);
 Route::post('/appointment', [AppointmentController::class, 'store']);

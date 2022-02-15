@@ -37,17 +37,21 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $date=$request->input('date');
-        $count=Appointment::where('date', $date)->get();
-        $a=sizeof($count);
-        if($a<2){
-        $data= new Appointment;
         $department=$request->input('departement');
+        $count=Appointment::where('date', $date)->get();
+        $count2=Appointment::where('specialisation', $department)->get();
+        $a=sizeof($count);
+        $b=sizeof($count2);
+        if(  $b<2){
+        $data= new Appointment;
+        
         $doctor_id=Doctor::where('specialisation', $department)->first()->id;
  $data->full_name=$request->input('full_name');
  $data->date=$request->input('date');
  $data->phone_number=$request->input('phone_number');
  $data->message=$request->input('message');
  $data->doctor_id=$doctor_id;
+ $data->specialisation=$request->input('departement');
  $data->save();
       return response()->json([
     'status'=>200,

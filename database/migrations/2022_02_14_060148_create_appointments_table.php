@@ -20,6 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('date');
             $table->string('phone_number');
             $table->string('message');
+            $table->string('specialisation');
             $table->unsignedBigInteger('doctor_id');
             $table->foreign('doctor_id')->references('id')->on('doctors');
         });
